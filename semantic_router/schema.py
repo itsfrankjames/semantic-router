@@ -5,7 +5,6 @@ from pydantic.v1 import BaseModel
 
 class EncoderType(Enum):
     AZURE = "azure"
-    COHERE = "cohere"
     OPENAI = "openai"
     BM25 = "bm25"
     TFIDF = "tfidf"
@@ -38,9 +37,6 @@ class Message(BaseModel):
         if self.role.lower() not in ["user", "assistant", "system"]:
             raise ValueError("Role must be either 'user', 'assistant' or 'system'")
         return {"role": self.role, "content": self.content}
-
-    def to_cohere(self):
-        return {"role": self.role, "message": self.content}
 
     def to_llamacpp(self):
         return {"role": self.role, "content": self.content}

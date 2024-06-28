@@ -181,21 +181,6 @@ class BedrockEncoder(BaseEncoder):
                         )
                         response_body = json.loads(response.get("body").read())
                         embeddings.append(response_body.get("embedding"))
-                elif self.name and "cohere" in self.name:
-                    chunked_docs = self.chunk_strings(docs)
-                    for chunk in chunked_docs:
-                        chunk = json.dumps(
-                            {"texts": chunk, "input_type": self.input_type}
-                        )
-                        response = self.client.invoke_model(
-                            body=chunk,
-                            modelId=self.name,
-                            accept="*/*",
-                            contentType="application/json",
-                        )
-                        response_body = json.loads(response.get("body").read())
-                        chunk_embeddings = response_body.get("embeddings")
-                        embeddings.extend(chunk_embeddings)
                 else:
                     raise ValueError("Unknown model name")
                 return embeddings

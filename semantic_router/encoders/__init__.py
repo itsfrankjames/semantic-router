@@ -4,7 +4,6 @@ from semantic_router.encoders.base import BaseEncoder
 from semantic_router.encoders.bedrock import BedrockEncoder
 from semantic_router.encoders.bm25 import BM25Encoder
 from semantic_router.encoders.clip import CLIPEncoder
-from semantic_router.encoders.cohere import CohereEncoder
 from semantic_router.encoders.fastembed import FastEmbedEncoder
 from semantic_router.encoders.google import GoogleEncoder
 from semantic_router.encoders.huggingface import HuggingFaceEncoder
@@ -19,7 +18,6 @@ from semantic_router.schema import EncoderType
 __all__ = [
     "BaseEncoder",
     "AzureOpenAIEncoder",
-    "CohereEncoder",
     "OpenAIEncoder",
     "BM25Encoder",
     "TfidfEncoder",
@@ -45,8 +43,6 @@ class AutoEncoder:
         if self.type == EncoderType.AZURE:
             # TODO should change `model` to `name` JB
             self.model = AzureOpenAIEncoder(model=name)
-        elif self.type == EncoderType.COHERE:
-            self.model = CohereEncoder(name=name)
         elif self.type == EncoderType.OPENAI:
             self.model = OpenAIEncoder(name=name)
         elif self.type == EncoderType.BM25:

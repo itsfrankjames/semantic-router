@@ -1,5 +1,4 @@
 from semantic_router.llms.base import BaseLLM
-from semantic_router.llms.cohere import CohereLLM
 from semantic_router.llms.llamacpp import LlamaCppLLM
 from semantic_router.llms.mistral import MistralAILLM
 from semantic_router.llms.openai import OpenAILLM
@@ -11,7 +10,6 @@ __all__ = [
     "OpenAILLM",
     "LlamaCppLLM",
     "OpenRouterLLM",
-    "CohereLLM",
     "AzureOpenAILLM",
     "MistralAILLM",
 ]
